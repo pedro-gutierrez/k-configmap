@@ -1,0 +1,14 @@
+---
+ - name: Delete {{ name }} configmap
+   shell: "kubectl delete configmap {{ name }} --namespace={{ ns }}"
+   ignore_errors: yes
+
+ - name: Wait for {{ name }} configmap to be deleted
+   shell: "kubectl get configmaps --namespace={{ ns }}"
+   register: result
+   until: result.stdout.find(name) == -1
+   retries: "{{ retry.max }}"
+   delay: "{{ retry.delay }}"
+
+ - name: Create {{ name }} configmap
+   shell: "kubectl create -f {{ yamls }}/{{ name }}-configmap.yml"
