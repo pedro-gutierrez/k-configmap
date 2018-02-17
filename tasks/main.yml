@@ -10,5 +10,5 @@
    retries: "{{ retry.max }}"
    delay: "{{ retry.delay }}"
 
- - name: Create {{ name }} configmap
+ - name: "Create {{ name }} configmap (from file: {{ yamls }}/{{ file }}-configmap.yml)"
    shell: "kubectl create -f {{ yamls }}/{{ name }}-configmap.yml"
