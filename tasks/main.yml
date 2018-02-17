@@ -11,4 +11,4 @@
    delay: "{{ retry.delay }}"
 
  - name: "Create {{ name }} configmap (from file: {{ yamls }}/{{ file }}-configmap.yml)"
-   shell: "kubectl create -f {{ yamls }}/{{ name }}-configmap.yml"
+   shell: "kubectl create -f {{ yamls }}/{{ file }}-configmap.yml"
